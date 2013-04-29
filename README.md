@@ -3,7 +3,7 @@ miniCMS
 
 ## Add admin features to Docpad
 
-![screen1](/screens/screen1.png)
+![screen1](https://github.com/jeremyfa/docpad-plugin-minicms/raw/master/screens/screen1.png)
 
 ### An admin panel for Docpad?
 
