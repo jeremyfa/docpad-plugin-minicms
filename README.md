@@ -17,6 +17,6 @@ _I know there has been [a lot of talk](https://github.com/bevry/docpad/issues/12
 
 ## How to use
 
-Run ```npm install docpad-plugin-minicms```.
+Run ```npm install docpad-plugin-minicms```
 
-Then checkout the blog example (in examples/blog directory) to learn how to configure your **admin** panel.
+Then take a look the blog example project (in _examples/blog_ directory) to learn how to configure your project's admin panel.

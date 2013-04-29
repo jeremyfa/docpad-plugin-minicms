@@ -1,0 +1,20 @@
+{
+  "name": "blog",
+  "version": "0.1.0",
+  "description": "Blog example with Docpad and MiniCMS plugin",
+  "main": "node_modules/docpad/bin/docpad-server",
+  "scripts": {
+    "start": "node_modules/docpad/bin/docpad-server"
+  },
+  "repository": "",
+  "author": "Jeremy Faivre <contact@jeremyfa.com>",
+  "license": "MIT",
+  "dependencies": {
+    "docpad-plugin-marked": "~2.1.1",
+    "docpad-plugin-stylus": "~2.3.0",
+    "docpad-plugin-coffeekup": "~2.1.5",
+    "docpad-plugin-cleanurls": "~2.4.3",
+    "docpad-plugin-coffeescript": "~2.2.1",
+    "docpad": "~6.30.4"
+  }
+}
