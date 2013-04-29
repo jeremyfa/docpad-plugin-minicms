@@ -51,12 +51,6 @@ module.exports = (BasePlugin) ->
                 url:    'cms' # The prefix used to load the admin panel
                 meta:   'cms' # The key used to store form info in metadata
 
-            auth: (login, password, callback) ->
-                if login is 'admin' and password is 'password'
-                    callback null, true
-                else
-                    callback "Invalid login or password.", false
-
             # Default validator for all fields
             validate: (field, val) ->
                 if field.optional and not val?
