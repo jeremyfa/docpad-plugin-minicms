@@ -1,0 +1,43 @@
+{
+  "name": "docpad-plugin-minicms",
+  "version": "2.0.0",
+  "description": "Add admin features to docpad",
+  "homepage": "http://jeremyfa.com",
+  "keywords": [
+    "docpad",
+    "docpad-plugin",
+    "admin",
+    "forms",
+    "cms",
+    "bootstrap"
+  ],
+  "author": "Jeremy Faivre <contact@jeremyfa.com> (http://jeremyfa.com)",
+  "maintainers": [],
+  "contributors": [],
+  "bugs": {
+    "url": "https://github.com/jeremyfa/docpad-plugin-minicms/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jeremyfa/docpad-plugin-minicms.git"
+  },
+  "engines": {
+    "node": ">=0.6.0",
+    "docpad": "6.x"
+  },
+  "dependencies": {
+    "yamljs": "~0.1.4",
+    "urlify": "~0.2.1",
+    "slug": "~0.2.2",
+    "coffeecup": "~0.3.19",
+    "express": "~3.1.2",
+    "marked": "~0.2.8",
+    "node-uuid": "~1.4.0",
+    "gm": "~1.8.2",
+    "owl-deepcopy": "0.0.2"
+  },
+  "devDependencies": {
+    "coffee-script": "1.4.x"
+  },
+  "main": "./out/minicms.plugin.js"
+}
