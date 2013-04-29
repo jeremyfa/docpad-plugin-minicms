@@ -15,6 +15,7 @@
     "docpad-plugin-coffeekup": "~2.1.5",
     "docpad-plugin-cleanurls": "~2.4.3",
     "docpad-plugin-coffeescript": "~2.2.1",
-    "docpad": "~6.30.4"
+    "docpad": "~6.30.4",
+    "docpad-plugin-minicms": "~2.0.0"
   }
 }
