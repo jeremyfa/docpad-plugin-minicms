@@ -5,6 +5,8 @@ miniCMS
 
 ![screen1](https://github.com/jeremyfa/docpad-plugin-minicms/raw/master/screens/screen1.png)
 
+![screen1](https://github.com/jeremyfa/docpad-plugin-minicms/raw/master/screens/screen2.png)
+
 ### An admin panel for Docpad?
 
 _I know there has been [a lot of talk](https://github.com/bevry/docpad/issues/123) about defining a roadmap to build a docpad GUI, but I needed an admin panel with basic CMS features right now, so I just made one. It is far from being perfect but it works._
