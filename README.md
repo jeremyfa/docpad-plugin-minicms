@@ -33,3 +33,4 @@ _All these projects that were very helpful:_
 * [Wysihtml5 (on Bootstrap)](http://jhollingworth.github.io/bootstrap-wysihtml5)
 * [Tag-it!](http://aehlke.github.io/tag-it)
 * [Bootstrap Datetime Picker](http://tarruda.github.io/bootstrap-datetimepicker)
+* [jQuery File Upload](http://blueimp.github.io/jQuery-File-Upload)
