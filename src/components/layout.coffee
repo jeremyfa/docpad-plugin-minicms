@@ -20,6 +20,7 @@ module.exports = ->
             link rel: 'stylesheet', href: '/'+@prefix+'/css/datetimepicker.css'
             link rel: 'stylesheet', href: '/'+@prefix+'/css/bootstrap-wysihtml5.css'
             link rel: 'stylesheet', href: '/'+@prefix+'/css/wysiwyg-color.css'
+            link rel: 'stylesheet', href: '/'+@prefix+'/css/bootstrap-colorpicker.css'
 
             # Scripts
             script src: '/'+@prefix+'/js/underscore.js'
@@ -32,6 +33,7 @@ module.exports = ->
             script src: '/'+@prefix+'/js/datetimepicker.js'
             script src: '/'+@prefix+'/js/wysihtml5.js'
             script src: '/'+@prefix+'/js/bootstrap-wysihtml5.js'
+            script src: '/'+@prefix+'/js/bootstrap-colorpicker.js'
             script src: '/'+@prefix+'/vendor/epiceditor/js/epiceditor.js'
 
         body '#minicms', 'data-prefix': @prefix, ->

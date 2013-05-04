@@ -49,6 +49,14 @@ module.exports = (field, val) ->
     else if field.type is 'date'
         return typeof(val) is 'number' and Math.floor(val) is val
 
+    # Color
+    else if field.type is 'color'
+        if not val?.length is 7 then return false
+        if not val.charAt(0) is '#' then return false
+        for i in [1..6]
+            if not (val.charAt(i).toLowerCase() in ['1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']) then return false
+        return true
+
     # Tags
     else if field.type is 'tags'
         if not (val instanceof Array)

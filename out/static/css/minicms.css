@@ -197,3 +197,19 @@
     min-width: 635px;
     margin-bottom: -10px;
 }
+
+#minicms form .input-append.color input.form-value {
+    width: 75px;
+}
+
+#minicms form .input-append.color .add-on {
+    position: relative;
+    left: 0;
+    top: -2px;
+}
+
+#minicms form .input-append.color .add-on i {
+    position: relative;
+    left: 0;
+    top: 2px;
+}

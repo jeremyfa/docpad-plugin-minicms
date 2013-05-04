@@ -6,6 +6,7 @@ cms:
     title: 'Blog Example'
     author: 'Jérémy Faivre'
     about: 'Lorem ipsum dolor sit, consectetuer adipiscing. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo suspendisse bibendum.'
+    myColor: '#38ab3d'
     category: News
     subCategory: Technology
     logo:

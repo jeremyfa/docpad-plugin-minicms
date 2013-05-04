@@ -45,6 +45,10 @@
           rel: 'stylesheet',
           href: '/' + this.prefix + '/css/wysiwyg-color.css'
         });
+        link({
+          rel: 'stylesheet',
+          href: '/' + this.prefix + '/css/bootstrap-colorpicker.css'
+        });
         script({
           src: '/' + this.prefix + '/js/underscore.js'
         });
@@ -74,6 +78,9 @@
         });
         script({
           src: '/' + this.prefix + '/js/bootstrap-wysihtml5.js'
+        });
+        script({
+          src: '/' + this.prefix + '/js/bootstrap-colorpicker.js'
         });
         return script({
           src: '/' + this.prefix + '/vendor/epiceditor/js/epiceditor.js'

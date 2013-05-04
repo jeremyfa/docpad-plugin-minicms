@@ -72,6 +72,27 @@ module.exports =
                         type:       'textarea'
                         height:     100
                     ,
+                        # A color picker example
+                        field:      'myColor'
+                        label:      'My Favourite Color'
+                        type:       'color'
+                    #,
+                    #    # A range example
+                    #    field:      'myRange'
+                    #    label:      'Range Example'
+                    #    type:       'range'
+                    #    from:       13
+                    #    to:         99
+                    #    #step:       3 # You can provide a step (optional)
+                    #,
+                    #    # A range example
+                    #    field:      'mySlider'
+                    #    label:      'Slider Example'
+                    #    type:       'slider'
+                    #    from:       13
+                    #    to:         99
+                    #    step:       2
+                    ,
                         # We can choose a 'category' with a choice component.
                         field:      'category'
                         label:      'Category'

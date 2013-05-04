@@ -3,14 +3,26 @@
 
   module.exports = function(field, val) {
     var item, result, _i, _len;
-    if (field.type === 'text') return val.trim();
-    if (field.type === 'textarea') return val.trim();
+    if (field.type === 'text') {
+      if (!(val != null)) return '';
+      return val.trim();
+    }
+    if (field.type === 'textarea') {
+      if (!(val != null)) return '';
+      return val.trim();
+    }
     if (field.type === 'wysiwyg') {
+      if (!(val != null)) return '';
       return val.split("\n").join(' ').split("\r").join(' ').trim();
     } else if (field.type === 'choice') {
+      if (!(val != null)) return null;
       return val.trim();
     } else if (field.type === 'date') {
+      if (!(val != null)) return Math.floor(new Date().getTime() / 1000) * 1000;
       return Math.floor(val / 1000) * 1000;
+    } else if (field.type === 'color') {
+      if (!(val != null)) return '#ffffff';
+      return val.toLowerCase();
     } else if (field.type === 'tags') {
       if (!(val instanceof Array)) return [];
       result = [];
