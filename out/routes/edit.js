@@ -66,7 +66,7 @@
   sessionBridge = require('../utils/sessionBridge');
 
   module.exports = function(req, res) {
-    var allValid, component, components, computed, computedData, config, content, context, data, deps, doc, docpad, err, errors, exists, ext, fieldData, fieldsData, filesPath, filesToRemove, finalContext, finalData, format, imgContext, imgExists, imgUrl, item, itemExists, itemPath, k, key, keys, meta, model, newExists, newUrl, newUrlDirs, path, pathDirs, prevExists, prevUrl, realUrl, remove, save, scriptLoaded, session, successes, toRemove, url, urlForFile, v, val, valid, ___iced_passed_deferral, __iced_deferrals, __iced_k, _i, _j, _len, _len1, _ref, _ref1, _ref2,
+    var allValid, component, components, computed, computedData, config, content, context, data, deps, doc, docpad, err, errors, exists, ext, fieldData, fieldsData, filesPath, filesToRemove, finalContext, finalData, format, imgContext, imgExists, imgUrl, item, itemExists, itemPath, k, key, keys, meta, model, newExists, newUrl, newUrlDirs, path, pathDirs, prevExists, prevUrl, realUrl, remove, save, saveTime, scriptLoaded, session, successes, toRemove, url, urlForFile, v, val, valid, ___iced_passed_deferral, __iced_deferrals, __iced_k, _i, _j, _len, _len1, _ref, _ref1, _ref2,
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
@@ -596,6 +596,8 @@
               })(function() {
                 meta = applyContext(model.form.meta, finalContext);
                 meta[config.prefix.meta] = finalData;
+                saveTime = new Date().getTime();
+                meta[config.prefix.meta].updated_at = saveTime;
                 content = applyContext(model.form.content, finalContext);
                 doc = "```\n" + (YAML.stringify(meta, 8, 4).trim()) + "\n```\n" + content;
                 pathDirs = path.slice(0, path.lastIndexOf('/'));
@@ -613,7 +615,7 @@
                             return err = arguments[0];
                           };
                         })(),
-                        lineno: 243
+                        lineno: 245
                       }));
                       __iced_deferrals._fulfill();
                     })(__iced_k);
@@ -633,7 +635,7 @@
                           return itemExists = arguments[0];
                         };
                       })(),
-                      lineno: 244
+                      lineno: 246
                     }));
                     __iced_deferrals._fulfill();
                   })(function() {
@@ -651,7 +653,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 246
+                            lineno: 248
                           }));
                           __iced_deferrals._fulfill();
                         })(__iced_k);
@@ -671,7 +673,7 @@
                               return err = arguments[0];
                             };
                           })(),
-                          lineno: 247
+                          lineno: 249
                         }));
                         __iced_deferrals._fulfill();
                       })(function() {
@@ -687,40 +689,77 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 250
+                            lineno: 252
                           }));
                           __iced_deferrals._fulfill();
                         })(function() {
-                          realUrl = (url === '/index' ? '/' : url);
                           setTimeout((function() {
-                            if (docpad.getCollection('html').findOne({
-                              url: realUrl
-                            }) != null) {
-                              return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
-                            } else {
-                              return setTimeout((function() {
-                                if (docpad.getCollection('html').findOne({
-                                  url: realUrl
-                                }) != null) {
-                                  return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
+                            var docItem, i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
+                            __iced_k = __iced_k_noop;
+                            ___iced_passed_deferral1 = iced.findDeferral(arguments);
+                            realUrl = (url === '/index' ? '/' : url);
+                            docItem = null;
+                            (function(__iced_k) {
+                              var _k, _results, _while;
+                              i = 0;
+                              _results = [];
+                              _while = function(__iced_k) {
+                                var _break, _continue, _next;
+                                _break = function() {
+                                  return __iced_k(_results);
+                                };
+                                _continue = function() {
+                                  return iced.trampoline(function() {
+                                    ++i;
+                                    return _while(__iced_k);
+                                  });
+                                };
+                                _next = function(__iced_next_arg) {
+                                  _results.push(__iced_next_arg);
+                                  return _continue();
+                                };
+                                if (!(i < 20)) {
+                                  return _break();
                                 } else {
-                                  return setTimeout((function() {
-                                    if (docpad.getCollection('html').findOne({
-                                      url: realUrl
-                                    }) != null) {
-                                      return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
-                                    } else {
-                                      return docpad.generate({
-                                        reset: true
-                                      }, function() {
-                                        return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
+                                  (function(__iced_k) {
+                                    var _ref3;
+                                    if ((docItem != null ? typeof docItem.get === "function" ? (_ref3 = docItem.get(config.prefix.meta)) != null ? _ref3.updated_at : void 0 : void 0 : void 0) !== saveTime) {
+                                      (function(__iced_k) {
+                                        __iced_deferrals = new iced.Deferrals(__iced_k, {
+                                          parent: ___iced_passed_deferral1,
+                                          filename: "src/routes/edit.coffee"
+                                        });
+                                        setTimeout(__iced_deferrals.defer({
+                                          lineno: 258
+                                        }), 1000);
+                                        __iced_deferrals._fulfill();
+                                      })(function() {
+                                        return __iced_k(docItem = docpad.getCollection('html').findOne({
+                                          url: realUrl
+                                        }));
                                       });
+                                    } else {
+                                      (function(__iced_k) {
+                                        _break();
+                                      })(__iced_k);
                                     }
-                                  }), 5000);
+                                  })(_next);
                                 }
-                              }), 2500);
-                            }
-                          }), 1000);
+                              };
+                              _while(__iced_k);
+                            })(function() {
+                              var _ref3;
+                              if ((docItem != null ? typeof docItem.get === "function" ? (_ref3 = docItem.get(config.prefix.meta)) != null ? _ref3.updated_at : void 0 : void 0 : void 0) !== saveTime) {
+                                return docpad.generate({
+                                  reset: true
+                                }, function() {
+                                  return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
+                                });
+                              } else {
+                                return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
+                              }
+                            });
+                          }), 1);
                           return;
                           return __iced_k();
                         });
@@ -790,7 +829,7 @@
                           return err = arguments[0];
                         };
                       })(),
-                      lineno: 295
+                      lineno: 298
                     }));
                     __iced_deferrals._fulfill();
                   })(_next);
@@ -798,36 +837,70 @@
               };
               _while(__iced_k);
             })(function() {
-              url = applyContext(model.form.url, context);
               setTimeout((function() {
-                if (!(docpad.getCollection('html').findOne({
-                  url: url
-                }) != null)) {
-                  return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
-                } else {
-                  return setTimeout((function() {
-                    if (!(docpad.getCollection('html').findOne({
-                      url: url
-                    }) != null)) {
-                      return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
+                var i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
+                __iced_k = __iced_k_noop;
+                ___iced_passed_deferral1 = iced.findDeferral(arguments);
+                url = applyContext(model.form.url, context);
+                (function(__iced_k) {
+                  var _l, _results, _while;
+                  i = 0;
+                  _results = [];
+                  _while = function(__iced_k) {
+                    var _break, _continue, _next;
+                    _break = function() {
+                      return __iced_k(_results);
+                    };
+                    _continue = function() {
+                      return iced.trampoline(function() {
+                        ++i;
+                        return _while(__iced_k);
+                      });
+                    };
+                    _next = function(__iced_next_arg) {
+                      _results.push(__iced_next_arg);
+                      return _continue();
+                    };
+                    if (!(i < 20)) {
+                      return _break();
                     } else {
-                      return setTimeout((function() {
-                        if (!(docpad.getCollection('html').findOne({
+                      (function(__iced_k) {
+                        if (docpad.getCollection('html').findOne({
                           url: url
-                        }) != null)) {
-                          return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
+                        }) != null) {
+                          (function(__iced_k) {
+                            __iced_deferrals = new iced.Deferrals(__iced_k, {
+                              parent: ___iced_passed_deferral1,
+                              filename: "src/routes/edit.coffee"
+                            });
+                            setTimeout(__iced_deferrals.defer({
+                              lineno: 303
+                            }), 1000);
+                            __iced_deferrals._fulfill();
+                          })(__iced_k);
                         } else {
-                          return docpad.generate({
-                            reset: true
-                          }, function() {
-                            return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
-                          });
+                          (function(__iced_k) {
+                            _break();
+                          })(__iced_k);
                         }
-                      }), 5000);
+                      })(_next);
                     }
-                  }), 2500);
-                }
-              }), 1000);
+                  };
+                  _while(__iced_k);
+                })(function() {
+                  if (docpad.getCollection('html').findOne({
+                    url: url
+                  }) != null) {
+                    return docpad.generate({
+                      reset: true
+                    }, function() {
+                      return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
+                    });
+                  } else {
+                    return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
+                  }
+                });
+              }), 1);
               return;
               return __iced_k();
             });

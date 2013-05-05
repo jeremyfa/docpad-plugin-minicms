@@ -229,6 +229,8 @@ module.exports = (req, res) ->
             # Compute document file
             meta = applyContext model.form.meta, finalContext
             meta[config.prefix.meta] = finalData
+            saveTime = new Date().getTime()
+            meta[config.prefix.meta].updated_at = saveTime
             content = applyContext model.form.content, finalContext
             doc = """
             ```
@@ -247,27 +249,27 @@ module.exports = (req, res) ->
             await exec "mkdir -p #{shellEscape pathDirs}", defer err
             await fs.writeFile path, doc, defer err
 
-            # Wait until document is created and perform redirect
-            realUrl = (if url is '/index' then '/' else url)
-            setTimeout (->
-                if docpad.getCollection('html').findOne(url: realUrl)?
-                    res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
+            # Wait until document is created/updated and perform redirect
+            setTimeout (=>
+                realUrl = (if url is '/index' then '/' else url)
+                docItem = null
+
+                for i in [0...20]
+                    if docItem?.get?(config.prefix.meta)?.updated_at isnt saveTime
+                        await setTimeout(defer(), 1000)
+                        docItem = docpad.getCollection('html').findOne(url: realUrl)
+                    else
+                        break
+
+                if docItem?.get?(config.prefix.meta)?.updated_at isnt saveTime
+                    # If after 20s there is still no document,
+                    # Force generate and redirect
+                    docpad.generate reset: true, ->
+                        res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
                 else
-                    setTimeout (->
-                        if docpad.getCollection('html').findOne(url: realUrl)?
-                            res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
-                        else
-                            setTimeout (->
-                                if docpad.getCollection('html').findOne(url: realUrl)?
-                                    res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
-                                else
-                                    # If after 10s there is still no document, redirect to list anyway
-                                    # After forcing generate
-                                    docpad.generate reset: true, ->
-                                        res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
-                            ), 5000
-                    ), 2500
-            ), 1000
+                    res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
+            ), 1
+
             return
 
     # Remove content
@@ -292,27 +294,26 @@ module.exports = (req, res) ->
         for toRemove in filesToRemove
             await fs.unlink toRemove, defer err
 
+
         # Wait until document is removed and perform redirect
-        url = applyContext model.form.url, context
-        setTimeout (->
-            if not docpad.getCollection('html').findOne(url: url)?
-                res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
+        setTimeout (=>
+            url = applyContext model.form.url, context
+
+            for i in [0...20]
+                if docpad.getCollection('html').findOne(url: url)?
+                    await setTimeout(defer(), 1000)
+                else
+                    break
+
+            if docpad.getCollection('html').findOne(url: url)?
+                # If after 20s there is still the document,
+                # Force generate and redirect
+                docpad.generate reset: true, ->
+                    res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
             else
-                setTimeout (->
-                    if not docpad.getCollection('html').findOne(url: url)?
-                        res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
-                    else
-                        setTimeout (->
-                            if not docpad.getCollection('html').findOne(url: url)?
-                                res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
-                            else
-                                # If after 10s document is still there, redirect to list anyway
-                                # After forcing generate
-                                docpad.generate reset: true, ->
-                                    res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
-                        ), 5000
-                ), 2500
-        ), 1000
+                res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
+        ), 1
+
         return
 
 

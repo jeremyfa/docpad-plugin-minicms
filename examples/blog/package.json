@@ -16,6 +16,6 @@
     "docpad-plugin-cleanurls": "~2.4.3",
     "docpad-plugin-coffeescript": "~2.2.1",
     "docpad": "~6.32.0",
-    "docpad-plugin-minicms": "~2.1.0"
+    "docpad-plugin-minicms": "~2.1.1"
   }
 }
