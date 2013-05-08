@@ -14,9 +14,13 @@
       return;
     }
     time = new Date().getTime();
-    return docpad.generate({
+    return docpad.action('generate', {
       reset: true
-    }, function() {
+    }, function(err) {
+      var _ref;
+      if (err) {
+        (process.stderr.write((_ref = err.message) != null ? _ref : err) + '').trim() + "\n";
+      }
       res.set('Content-Type', 'application/json; charset=UTF-8');
       return res.send(JSON.stringify({
         result: new Date().getTime() - time

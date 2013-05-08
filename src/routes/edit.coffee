@@ -157,6 +157,7 @@ module.exports = (req, res) ->
 
     # Save changes
     if save and allValid
+
         # Compute final context
         finalContext = {}
         if data?
@@ -250,25 +251,28 @@ module.exports = (req, res) ->
             await fs.writeFile path, doc, defer err
 
             # Wait until document is created/updated and perform redirect
-            setTimeout (=>
-                realUrl = (if url is '/index' then '/' else url)
-                docItem = null
+            docpad.action 'generate', reset: false, (err) ->
+                if err then (process.stderr.write(err.message ? err)+'').trim()+"\n"
+                setTimeout (=>
+                    realUrl = (if url is '/index' then '/' else url)
+                    docItem = null
 
-                for i in [0...20]
+                    for i in [0...20]
+                        if docItem?.get?(config.prefix.meta)?.updated_at isnt saveTime
+                            await setTimeout(defer(), 1000)
+                            docItem = docpad.getCollection('html').findOne(url: realUrl)
+                        else
+                            break
+
                     if docItem?.get?(config.prefix.meta)?.updated_at isnt saveTime
-                        await setTimeout(defer(), 1000)
-                        docItem = docpad.getCollection('html').findOne(url: realUrl)
+                        # If after 20s there is still no document,
+                        # Force generate and redirect
+                        docpad.action 'generate', reset: true, (err) ->
+                            if err then (process.stderr.write(err.message ? err)+'').trim()+"\n"
+                            res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
                     else
-                        break
-
-                if docItem?.get?(config.prefix.meta)?.updated_at isnt saveTime
-                    # If after 20s there is still no document,
-                    # Force generate and redirect
-                    docpad.generate reset: true, ->
                         res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
-                else
-                    res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/edit?url='+url
-            ), 1
+                ), 1
 
             return
 
@@ -290,29 +294,30 @@ module.exports = (req, res) ->
                     imgUrl = applyContext component.images[key].url, context
                     filesToRemove.push filesPath+imgUrl
         
-        # Perform deletes
         for toRemove in filesToRemove
             await fs.unlink toRemove, defer err
 
-
         # Wait until document is removed and perform redirect
-        setTimeout (=>
-            url = applyContext model.form.url, context
+        docpad.action 'generate', reset: false, (err) ->
+            if err then (process.stderr.write(err.message ? err)+'').trim()+"\n"
+            setTimeout (=>
+                url = applyContext model.form.url, context
 
-            for i in [0...20]
+                for i in [0...20]
+                    if docpad.getCollection('html').findOne(url: url)?
+                        await setTimeout(defer(), 1000)
+                    else
+                        break
+
                 if docpad.getCollection('html').findOne(url: url)?
-                    await setTimeout(defer(), 1000)
+                    # If after 20s there is still the document,
+                    # Force generate and redirect
+                    docpad.action 'generate', reset: true, (err) ->
+                        if err then return (process.stderr.write(err.message ? err)+'').trim()+"\n"
+                        res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
                 else
-                    break
-
-            if docpad.getCollection('html').findOne(url: url)?
-                # If after 20s there is still the document,
-                # Force generate and redirect
-                docpad.generate reset: true, ->
                     res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
-            else
-                res.redirect '/'+config.prefix.url+'/'+slugify(model.name[0])+'/list'
-        ), 1
+            ), 1
 
         return
 

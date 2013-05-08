@@ -12,6 +12,7 @@ module.exports = (req, res) ->
 
     # Force generate
     time = new Date().getTime();
-    docpad.generate reset: true, ->
+    docpad.action 'generate', reset: true, (err) ->
+        if err then (process.stderr.write(err.message ? err)+'').trim()+"\n"
         res.set 'Content-Type', 'application/json; charset=UTF-8'
         res.send JSON.stringify result: (new Date().getTime() - time)

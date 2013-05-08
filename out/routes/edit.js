@@ -241,7 +241,7 @@
                 return exists = arguments[0];
               };
             })(),
-            lineno: 176
+            lineno: 177
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -328,7 +328,7 @@
                                           return prevExists = arguments[0];
                                         };
                                       })(),
-                                      lineno: 189
+                                      lineno: 190
                                     }));
                                     __iced_deferrals._fulfill();
                                   })(function() {
@@ -348,7 +348,7 @@
                                                 return format = arguments[1];
                                               };
                                             })(),
-                                            lineno: 192
+                                            lineno: 193
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -381,7 +381,7 @@
                                                   return err = arguments[0];
                                                 };
                                               })(),
-                                              lineno: 205
+                                              lineno: 206
                                             }));
                                             __iced_deferrals._fulfill();
                                           })(function() {
@@ -399,7 +399,7 @@
                                                         return newExists = arguments[0];
                                                       };
                                                     })(),
-                                                    lineno: 207
+                                                    lineno: 208
                                                   }));
                                                   __iced_deferrals._fulfill();
                                                 })(function() {
@@ -417,7 +417,7 @@
                                                               return err = arguments[0];
                                                             };
                                                           })(),
-                                                          lineno: 209
+                                                          lineno: 210
                                                         }));
                                                         __iced_deferrals._fulfill();
                                                       })(function() {
@@ -440,7 +440,7 @@
                                                             return err = arguments[0];
                                                           };
                                                         })(),
-                                                        lineno: 211
+                                                        lineno: 212
                                                       }));
                                                       __iced_deferrals._fulfill();
                                                     })(function() {
@@ -546,7 +546,7 @@
                                                 return imgExists = arguments[0];
                                               };
                                             })(),
-                                            lineno: 224
+                                            lineno: 225
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -564,7 +564,7 @@
                                                       return err = arguments[0];
                                                     };
                                                   })(),
-                                                  lineno: 226
+                                                  lineno: 227
                                                 }));
                                                 __iced_deferrals._fulfill();
                                               })(function() {
@@ -615,7 +615,7 @@
                             return err = arguments[0];
                           };
                         })(),
-                        lineno: 245
+                        lineno: 246
                       }));
                       __iced_deferrals._fulfill();
                     })(__iced_k);
@@ -635,7 +635,7 @@
                           return itemExists = arguments[0];
                         };
                       })(),
-                      lineno: 246
+                      lineno: 247
                     }));
                     __iced_deferrals._fulfill();
                   })(function() {
@@ -653,7 +653,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 248
+                            lineno: 249
                           }));
                           __iced_deferrals._fulfill();
                         })(__iced_k);
@@ -673,7 +673,7 @@
                               return err = arguments[0];
                             };
                           })(),
-                          lineno: 249
+                          lineno: 250
                         }));
                         __iced_deferrals._fulfill();
                       })(function() {
@@ -689,77 +689,90 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 252
+                            lineno: 253
                           }));
                           __iced_deferrals._fulfill();
                         })(function() {
-                          setTimeout((function() {
-                            var docItem, i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
-                            __iced_k = __iced_k_noop;
-                            ___iced_passed_deferral1 = iced.findDeferral(arguments);
-                            realUrl = (url === '/index' ? '/' : url);
-                            docItem = null;
-                            (function(__iced_k) {
-                              var _k, _results, _while;
-                              i = 0;
-                              _results = [];
-                              _while = function(__iced_k) {
-                                var _break, _continue, _next;
-                                _break = function() {
-                                  return __iced_k(_results);
-                                };
-                                _continue = function() {
-                                  return iced.trampoline(function() {
-                                    ++i;
-                                    return _while(__iced_k);
-                                  });
-                                };
-                                _next = function(__iced_next_arg) {
-                                  _results.push(__iced_next_arg);
-                                  return _continue();
-                                };
-                                if (!(i < 20)) {
-                                  return _break();
-                                } else {
-                                  (function(__iced_k) {
-                                    var _ref3;
-                                    if ((docItem != null ? typeof docItem.get === "function" ? (_ref3 = docItem.get(config.prefix.meta)) != null ? _ref3.updated_at : void 0 : void 0 : void 0) !== saveTime) {
-                                      (function(__iced_k) {
-                                        __iced_deferrals = new iced.Deferrals(__iced_k, {
-                                          parent: ___iced_passed_deferral1,
-                                          filename: "src/routes/edit.coffee"
+                          docpad.action('generate', {
+                            reset: false
+                          }, function(err) {
+                            var _ref3,
+                              _this = this;
+                            if (err) {
+                              (process.stderr.write((_ref3 = err.message) != null ? _ref3 : err) + '').trim() + "\n";
+                            }
+                            return setTimeout((function() {
+                              var docItem, i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
+                              __iced_k = __iced_k_noop;
+                              ___iced_passed_deferral1 = iced.findDeferral(arguments);
+                              realUrl = (url === '/index' ? '/' : url);
+                              docItem = null;
+                              (function(__iced_k) {
+                                var _k, _results, _while;
+                                i = 0;
+                                _results = [];
+                                _while = function(__iced_k) {
+                                  var _break, _continue, _next;
+                                  _break = function() {
+                                    return __iced_k(_results);
+                                  };
+                                  _continue = function() {
+                                    return iced.trampoline(function() {
+                                      ++i;
+                                      return _while(__iced_k);
+                                    });
+                                  };
+                                  _next = function(__iced_next_arg) {
+                                    _results.push(__iced_next_arg);
+                                    return _continue();
+                                  };
+                                  if (!(i < 20)) {
+                                    return _break();
+                                  } else {
+                                    (function(__iced_k) {
+                                      var _ref4;
+                                      if ((docItem != null ? typeof docItem.get === "function" ? (_ref4 = docItem.get(config.prefix.meta)) != null ? _ref4.updated_at : void 0 : void 0 : void 0) !== saveTime) {
+                                        (function(__iced_k) {
+                                          __iced_deferrals = new iced.Deferrals(__iced_k, {
+                                            parent: ___iced_passed_deferral1,
+                                            filename: "src/routes/edit.coffee"
+                                          });
+                                          setTimeout(__iced_deferrals.defer({
+                                            lineno: 261
+                                          }), 1000);
+                                          __iced_deferrals._fulfill();
+                                        })(function() {
+                                          return __iced_k(docItem = docpad.getCollection('html').findOne({
+                                            url: realUrl
+                                          }));
                                         });
-                                        setTimeout(__iced_deferrals.defer({
-                                          lineno: 258
-                                        }), 1000);
-                                        __iced_deferrals._fulfill();
-                                      })(function() {
-                                        return __iced_k(docItem = docpad.getCollection('html').findOne({
-                                          url: realUrl
-                                        }));
-                                      });
-                                    } else {
-                                      (function(__iced_k) {
-                                        _break();
-                                      })(__iced_k);
+                                      } else {
+                                        (function(__iced_k) {
+                                          _break();
+                                        })(__iced_k);
+                                      }
+                                    })(_next);
+                                  }
+                                };
+                                _while(__iced_k);
+                              })(function() {
+                                var _ref4;
+                                if ((docItem != null ? typeof docItem.get === "function" ? (_ref4 = docItem.get(config.prefix.meta)) != null ? _ref4.updated_at : void 0 : void 0 : void 0) !== saveTime) {
+                                  return docpad.action('generate', {
+                                    reset: true
+                                  }, function(err) {
+                                    var _ref5;
+                                    if (err) {
+                                      (process.stderr.write((_ref5 = err.message) != null ? _ref5 : err) + '').trim() + "\n";
                                     }
-                                  })(_next);
-                                }
-                              };
-                              _while(__iced_k);
-                            })(function() {
-                              var _ref3;
-                              if ((docItem != null ? typeof docItem.get === "function" ? (_ref3 = docItem.get(config.prefix.meta)) != null ? _ref3.updated_at : void 0 : void 0 : void 0) !== saveTime) {
-                                return docpad.generate({
-                                  reset: true
-                                }, function() {
+                                    return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
+                                  });
+                                } else {
                                   return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
-                                });
-                              } else {
-                                return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
-                              }
-                            });
-                          }), 1);
+                                }
+                              });
+                            }), 1);
+                          });
                           return;
                           return __iced_k();
                         });
@@ -829,7 +842,7 @@
                           return err = arguments[0];
                         };
                       })(),
-                      lineno: 298
+                      lineno: 300
                     }));
                     __iced_deferrals._fulfill();
                   })(_next);
@@ -837,70 +850,83 @@
               };
               _while(__iced_k);
             })(function() {
-              setTimeout((function() {
-                var i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
-                __iced_k = __iced_k_noop;
-                ___iced_passed_deferral1 = iced.findDeferral(arguments);
-                url = applyContext(model.form.url, context);
-                (function(__iced_k) {
-                  var _l, _results, _while;
-                  i = 0;
-                  _results = [];
-                  _while = function(__iced_k) {
-                    var _break, _continue, _next;
-                    _break = function() {
-                      return __iced_k(_results);
+              docpad.action('generate', {
+                reset: false
+              }, function(err) {
+                var _ref5,
+                  _this = this;
+                if (err) {
+                  (process.stderr.write((_ref5 = err.message) != null ? _ref5 : err) + '').trim() + "\n";
+                }
+                return setTimeout((function() {
+                  var i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
+                  __iced_k = __iced_k_noop;
+                  ___iced_passed_deferral1 = iced.findDeferral(arguments);
+                  url = applyContext(model.form.url, context);
+                  (function(__iced_k) {
+                    var _l, _results, _while;
+                    i = 0;
+                    _results = [];
+                    _while = function(__iced_k) {
+                      var _break, _continue, _next;
+                      _break = function() {
+                        return __iced_k(_results);
+                      };
+                      _continue = function() {
+                        return iced.trampoline(function() {
+                          ++i;
+                          return _while(__iced_k);
+                        });
+                      };
+                      _next = function(__iced_next_arg) {
+                        _results.push(__iced_next_arg);
+                        return _continue();
+                      };
+                      if (!(i < 20)) {
+                        return _break();
+                      } else {
+                        (function(__iced_k) {
+                          if (docpad.getCollection('html').findOne({
+                            url: url
+                          }) != null) {
+                            (function(__iced_k) {
+                              __iced_deferrals = new iced.Deferrals(__iced_k, {
+                                parent: ___iced_passed_deferral1,
+                                filename: "src/routes/edit.coffee"
+                              });
+                              setTimeout(__iced_deferrals.defer({
+                                lineno: 307
+                              }), 1000);
+                              __iced_deferrals._fulfill();
+                            })(__iced_k);
+                          } else {
+                            (function(__iced_k) {
+                              _break();
+                            })(__iced_k);
+                          }
+                        })(_next);
+                      }
                     };
-                    _continue = function() {
-                      return iced.trampoline(function() {
-                        ++i;
-                        return _while(__iced_k);
-                      });
-                    };
-                    _next = function(__iced_next_arg) {
-                      _results.push(__iced_next_arg);
-                      return _continue();
-                    };
-                    if (!(i < 20)) {
-                      return _break();
-                    } else {
-                      (function(__iced_k) {
-                        if (docpad.getCollection('html').findOne({
-                          url: url
-                        }) != null) {
-                          (function(__iced_k) {
-                            __iced_deferrals = new iced.Deferrals(__iced_k, {
-                              parent: ___iced_passed_deferral1,
-                              filename: "src/routes/edit.coffee"
-                            });
-                            setTimeout(__iced_deferrals.defer({
-                              lineno: 303
-                            }), 1000);
-                            __iced_deferrals._fulfill();
-                          })(__iced_k);
-                        } else {
-                          (function(__iced_k) {
-                            _break();
-                          })(__iced_k);
+                    _while(__iced_k);
+                  })(function() {
+                    if (docpad.getCollection('html').findOne({
+                      url: url
+                    }) != null) {
+                      return docpad.action('generate', {
+                        reset: true
+                      }, function(err) {
+                        var _ref6;
+                        if (err) {
+                          return (process.stderr.write((_ref6 = err.message) != null ? _ref6 : err) + '').trim() + "\n";
                         }
-                      })(_next);
-                    }
-                  };
-                  _while(__iced_k);
-                })(function() {
-                  if (docpad.getCollection('html').findOne({
-                    url: url
-                  }) != null) {
-                    return docpad.generate({
-                      reset: true
-                    }, function() {
+                        return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
+                      });
+                    } else {
                       return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
-                    });
-                  } else {
-                    return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
-                  }
-                });
-              }), 1);
+                    }
+                  });
+                }), 1);
+              });
               return;
               return __iced_k();
             });

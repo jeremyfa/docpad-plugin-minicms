@@ -47,6 +47,16 @@
         sanitize: require('./utils/sanitize')
       };
 
+      MinicmsPlugin.prototype.docpadReady = function(opts) {
+        return this.docpad.action('watch', {}, function(err) {
+          var _ref;
+          if (err) {
+            process.stderr.write(("" + ((_ref = err.message) != null ? _ref : err)).trim() + "\n");
+          }
+          return this.docpad.log("Force watching file for minicms.");
+        });
+      };
+
       MinicmsPlugin.prototype.serverExtend = function(opts) {
         var app, config, docpad, express;
         app = opts.server;
