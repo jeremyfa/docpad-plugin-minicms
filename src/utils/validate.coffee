@@ -54,7 +54,7 @@ module.exports = (field, val) ->
         if not val?.length is 7 then return false
         if not val.charAt(0) is '#' then return false
         for i in [1..6]
-            if not (val.charAt(i).toLowerCase() in ['1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']) then return false
+            if not (val.charAt(i).toLowerCase() in ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']) then return false
         return true
 
     # Tags
