@@ -598,6 +598,9 @@
                 meta[config.prefix.meta] = finalData;
                 saveTime = new Date().getTime();
                 meta[config.prefix.meta].updated_at = saveTime;
+                if (!(meta[config.prefix.meta].id != null)) {
+                  meta[config.prefix.meta].id = (uuid.v1() + '' + uuid.v4()).split('-').join('').substring(0, 48);
+                }
                 content = applyContext(model.form.content, finalContext);
                 doc = "```\n" + (YAML.stringify(meta, 8, 4).trim()) + "\n```\n" + content;
                 pathDirs = path.slice(0, path.lastIndexOf('/'));
@@ -615,7 +618,7 @@
                             return err = arguments[0];
                           };
                         })(),
-                        lineno: 246
+                        lineno: 251
                       }));
                       __iced_deferrals._fulfill();
                     })(__iced_k);
@@ -635,7 +638,7 @@
                           return itemExists = arguments[0];
                         };
                       })(),
-                      lineno: 247
+                      lineno: 252
                     }));
                     __iced_deferrals._fulfill();
                   })(function() {
@@ -653,7 +656,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 249
+                            lineno: 254
                           }));
                           __iced_deferrals._fulfill();
                         })(__iced_k);
@@ -673,7 +676,7 @@
                               return err = arguments[0];
                             };
                           })(),
-                          lineno: 250
+                          lineno: 255
                         }));
                         __iced_deferrals._fulfill();
                       })(function() {
@@ -689,7 +692,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 253
+                            lineno: 258
                           }));
                           __iced_deferrals._fulfill();
                         })(function() {
@@ -738,7 +741,7 @@
                                             filename: "src/routes/edit.coffee"
                                           });
                                           setTimeout(__iced_deferrals.defer({
-                                            lineno: 261
+                                            lineno: 266
                                           }), 1000);
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -842,7 +845,7 @@
                           return err = arguments[0];
                         };
                       })(),
-                      lineno: 300
+                      lineno: 305
                     }));
                     __iced_deferrals._fulfill();
                   })(_next);
@@ -895,7 +898,7 @@
                                 filename: "src/routes/edit.coffee"
                               });
                               setTimeout(__iced_deferrals.defer({
-                                lineno: 307
+                                lineno: 312
                               }), 1000);
                               __iced_deferrals._fulfill();
                             })(__iced_k);

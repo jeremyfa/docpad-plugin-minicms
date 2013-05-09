@@ -232,6 +232,11 @@ module.exports = (req, res) ->
             meta[config.prefix.meta] = finalData
             saveTime = new Date().getTime()
             meta[config.prefix.meta].updated_at = saveTime
+
+            # Generate a unique id for this entry if not already generated
+            if not meta[config.prefix.meta].id?
+                meta[config.prefix.meta].id = (uuid.v1()+''+uuid.v4()).split('-').join('').substring(0,48)
+
             content = applyContext model.form.content, finalContext
             doc = """
             ```
