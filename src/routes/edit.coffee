@@ -238,10 +238,14 @@ module.exports = (req, res) ->
                 meta[config.prefix.meta].id = (uuid.v1()+''+uuid.v4()).split('-').join('').substring(0,48)
 
             content = applyContext model.form.content, finalContext
+            yamlString = YAML.stringify(meta, 8, 4).trim()
+            for char in ['-','`','#','_']
+                if not ((char+''+char+''+char) in yamlString)
+                    break
             doc = """
-            ```
-            #{YAML.stringify(meta, 8, 4).trim()}
-            ```
+            #{char+''+char+''+char}
+            #{yamlString}
+            #{char+''+char+''+char}
             #{content}
             """
 
