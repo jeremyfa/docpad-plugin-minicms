@@ -154,7 +154,8 @@
       computed.config = this.config;
       computed.slugify = slugify;
       computed.model = model;
-      computed.value = data != null ? data[computed.field] : null;
+      computed.value = data != null ? data[computed.field] : computed["default"];
+      if (!(computed.value != null)) computed.value = null;
       computedData[computed.field] = computed.value;
       valid[computed.field] = false;
       try {
@@ -242,7 +243,7 @@
                 return exists = arguments[0];
               };
             })(),
-            lineno: 177
+            lineno: 178
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -329,7 +330,7 @@
                                           return prevExists = arguments[0];
                                         };
                                       })(),
-                                      lineno: 190
+                                      lineno: 191
                                     }));
                                     __iced_deferrals._fulfill();
                                   })(function() {
@@ -349,7 +350,7 @@
                                                 return format = arguments[1];
                                               };
                                             })(),
-                                            lineno: 193
+                                            lineno: 194
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -382,7 +383,7 @@
                                                   return err = arguments[0];
                                                 };
                                               })(),
-                                              lineno: 206
+                                              lineno: 207
                                             }));
                                             __iced_deferrals._fulfill();
                                           })(function() {
@@ -400,7 +401,7 @@
                                                         return newExists = arguments[0];
                                                       };
                                                     })(),
-                                                    lineno: 208
+                                                    lineno: 209
                                                   }));
                                                   __iced_deferrals._fulfill();
                                                 })(function() {
@@ -418,7 +419,7 @@
                                                               return err = arguments[0];
                                                             };
                                                           })(),
-                                                          lineno: 210
+                                                          lineno: 211
                                                         }));
                                                         __iced_deferrals._fulfill();
                                                       })(function() {
@@ -441,7 +442,7 @@
                                                             return err = arguments[0];
                                                           };
                                                         })(),
-                                                        lineno: 212
+                                                        lineno: 213
                                                       }));
                                                       __iced_deferrals._fulfill();
                                                     })(function() {
@@ -547,7 +548,7 @@
                                                 return imgExists = arguments[0];
                                               };
                                             })(),
-                                            lineno: 225
+                                            lineno: 226
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -565,7 +566,7 @@
                                                       return err = arguments[0];
                                                     };
                                                   })(),
-                                                  lineno: 227
+                                                  lineno: 228
                                                 }));
                                                 __iced_deferrals._fulfill();
                                               })(function() {
@@ -628,7 +629,7 @@
                             return err = arguments[0];
                           };
                         })(),
-                        lineno: 255
+                        lineno: 256
                       }));
                       __iced_deferrals._fulfill();
                     })(__iced_k);
@@ -648,7 +649,7 @@
                           return itemExists = arguments[0];
                         };
                       })(),
-                      lineno: 256
+                      lineno: 257
                     }));
                     __iced_deferrals._fulfill();
                   })(function() {
@@ -666,7 +667,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 258
+                            lineno: 259
                           }));
                           __iced_deferrals._fulfill();
                         })(__iced_k);
@@ -686,7 +687,7 @@
                               return err = arguments[0];
                             };
                           })(),
-                          lineno: 259
+                          lineno: 260
                         }));
                         __iced_deferrals._fulfill();
                       })(function() {
@@ -702,7 +703,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 262
+                            lineno: 263
                           }));
                           __iced_deferrals._fulfill();
                         })(function() {
@@ -751,7 +752,7 @@
                                             filename: "src/routes/edit.coffee"
                                           });
                                           setTimeout(__iced_deferrals.defer({
-                                            lineno: 270
+                                            lineno: 271
                                           }), 1000);
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -855,7 +856,7 @@
                           return err = arguments[0];
                         };
                       })(),
-                      lineno: 309
+                      lineno: 310
                     }));
                     __iced_deferrals._fulfill();
                   })(_next);
@@ -908,7 +909,7 @@
                                 filename: "src/routes/edit.coffee"
                               });
                               setTimeout(__iced_deferrals.defer({
-                                lineno: 316
+                                lineno: 317
                               }), 1000);
                               __iced_deferrals._fulfill();
                             })(__iced_k);

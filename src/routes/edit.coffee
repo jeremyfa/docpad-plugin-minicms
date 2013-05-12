@@ -99,7 +99,8 @@ module.exports = (req, res) ->
         computed.config = @config
         computed.slugify = slugify
         computed.model = model
-        computed.value = if data? then data[computed.field] else null
+        computed.value = if data? then data[computed.field] else computed.default
+        if not computed.value? then computed.value = null
         computedData[computed.field] = computed.value
 
         # Run base validator
