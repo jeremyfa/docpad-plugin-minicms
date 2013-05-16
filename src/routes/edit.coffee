@@ -240,8 +240,10 @@ module.exports = (req, res) ->
 
             content = applyContext model.form.content, finalContext
             yamlString = YAML.stringify(meta, 8, 4).trim()
-            for char in ['-','`','#','_']
-                if not ((char+''+char+''+char) in yamlString)
+            char = null
+            for c in ['-','`','#','_','*','=','+',',',':','@','&',';','?','°']
+                if yamlString.split(''+c+''+c+''+c).length < 2
+                    char = c
                     break
             doc = """
             #{char+''+char+''+char}
