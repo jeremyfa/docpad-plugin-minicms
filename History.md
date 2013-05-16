@@ -1,5 +1,8 @@
 ## History
 
+- v2.1.7 May 16, 2013
+    - Fixed meta separator again as the previous fix didn't work
+
 - v2.1.6 May 12, 2013
     - Accept field default value (just use a ``default: 'my value'`` param in your field)
 
