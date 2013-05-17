@@ -167,6 +167,12 @@ module.exports = (req, res) ->
         finalContext.docpad = docpad
         finalContext.slugify = slugify
 
+        # Generate a unique id for this entry if not already generated
+        uniqId = item?[config.prefix.meta]?.id
+        if not uniqId?
+            uniqId = (uuid.v1()+''+uuid.v4()).split('-').join('').substring(0,48)
+        finalContext.id = uniqId
+
         # Compute url and path
         url = applyContext model.form.url, finalContext
         path = docpad.config.srcPath+'/documents'+url+'.'+model.form.ext
@@ -233,10 +239,7 @@ module.exports = (req, res) ->
             meta[config.prefix.meta] = finalData
             saveTime = new Date().getTime()
             meta[config.prefix.meta].updated_at = saveTime
-
-            # Generate a unique id for this entry if not already generated
-            if not meta[config.prefix.meta].id?
-                meta[config.prefix.meta].id = (uuid.v1()+''+uuid.v4()).split('-').join('').substring(0,48)
+            meta[config.prefix.meta].id = uniqId
 
             content = applyContext model.form.content, finalContext
             yamlString = YAML.stringify(meta, 8, 4).trim()

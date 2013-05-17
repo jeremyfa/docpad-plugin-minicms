@@ -66,7 +66,7 @@
   sessionBridge = require('../utils/sessionBridge');
 
   module.exports = function(req, res) {
-    var allValid, c, char, component, components, computed, computedData, config, content, context, data, deps, doc, docpad, err, errors, exists, ext, fieldData, fieldsData, filesPath, filesToRemove, finalContext, finalData, format, imgContext, imgExists, imgUrl, item, itemExists, itemPath, k, key, keys, meta, model, newExists, newUrl, newUrlDirs, path, pathDirs, prevExists, prevUrl, realUrl, remove, save, saveTime, scriptLoaded, session, successes, toRemove, url, urlForFile, v, val, valid, yamlString, ___iced_passed_deferral, __iced_deferrals, __iced_k, _i, _j, _len, _len1, _ref, _ref1, _ref2,
+    var allValid, c, char, component, components, computed, computedData, config, content, context, data, deps, doc, docpad, err, errors, exists, ext, fieldData, fieldsData, filesPath, filesToRemove, finalContext, finalData, format, imgContext, imgExists, imgUrl, item, itemExists, itemPath, k, key, keys, meta, model, newExists, newUrl, newUrlDirs, path, pathDirs, prevExists, prevUrl, realUrl, remove, save, saveTime, scriptLoaded, session, successes, toRemove, uniqId, url, urlForFile, v, val, valid, yamlString, ___iced_passed_deferral, __iced_deferrals, __iced_k, _i, _j, _len, _len1, _ref, _ref1, _ref2,
       _this = this;
     __iced_k = __iced_k_noop;
     ___iced_passed_deferral = iced.findDeferral(arguments);
@@ -214,6 +214,7 @@
       }
     }
     (function(__iced_k) {
+      var _ref3;
       if (save && allValid) {
         finalContext = {};
         if (data != null) {
@@ -224,6 +225,11 @@
         }
         finalContext.docpad = docpad;
         finalContext.slugify = slugify;
+        uniqId = item != null ? (_ref3 = item[config.prefix.meta]) != null ? _ref3.id : void 0 : void 0;
+        if (!(uniqId != null)) {
+          uniqId = (uuid.v1() + '' + uuid.v4()).split('-').join('').substring(0, 48);
+        }
+        finalContext.id = uniqId;
         url = applyContext(model.form.url, finalContext);
         path = docpad.config.srcPath + '/documents' + url + '.' + model.form.ext;
         if (item != null) {
@@ -242,7 +248,7 @@
                 return exists = arguments[0];
               };
             })(),
-            lineno: 178
+            lineno: 184
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -253,9 +259,9 @@
               }));
             } else {
               (function(__iced_k) {
-                var _k, _len2, _ref3, _results, _while;
-                _ref3 = model.form.components;
-                _len2 = _ref3.length;
+                var _k, _len2, _ref4, _results, _while;
+                _ref4 = model.form.components;
+                _len2 = _ref4.length;
                 _k = 0;
                 _results = [];
                 _while = function(__iced_k) {
@@ -276,7 +282,7 @@
                   if (!(_k < _len2)) {
                     return _break();
                   } else {
-                    component = _ref3[_k];
+                    component = _ref4[_k];
                     (function(__iced_k) {
                       if (component.type === 'file' && (component.images != null)) {
                         (function(__iced_k) {
@@ -284,12 +290,12 @@
                             fieldData = finalData[component.field];
                             filesPath = docpad.config.srcPath + '/files';
                             (function(__iced_k) {
-                              var _keys, _l, _m, _ref4, _results1, _while;
-                              _ref4 = component.images;
+                              var _keys, _l, _m, _ref5, _results1, _while;
+                              _ref5 = component.images;
                               _keys = (function() {
                                 var _results2;
                                 _results2 = [];
-                                for (_l in _ref4) {
+                                for (_l in _ref5) {
                                   _results2.push(_l);
                                 }
                                 return _results2;
@@ -315,7 +321,7 @@
                                   return _break();
                                 } else {
                                   key = _keys[_m];
-                                  val = _ref4[key];
+                                  val = _ref5[key];
                                   prevUrl = fieldData[key].url;
                                   (function(__iced_k) {
                                     __iced_deferrals = new iced.Deferrals(__iced_k, {
@@ -329,7 +335,7 @@
                                           return prevExists = arguments[0];
                                         };
                                       })(),
-                                      lineno: 191
+                                      lineno: 197
                                     }));
                                     __iced_deferrals._fulfill();
                                   })(function() {
@@ -349,12 +355,12 @@
                                                 return format = arguments[1];
                                               };
                                             })(),
-                                            lineno: 194
+                                            lineno: 200
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
-                                          var _ref5;
-                                          return __iced_k(err ? process.stderr.write("" + ((_ref5 = err.message) != null ? _ref5 : err) + "\n") : (ext = format.toLowerCase().slice(0, 3), ext === 'jpe' ? ext = 'jpg' : void 0));
+                                          var _ref6;
+                                          return __iced_k(err ? process.stderr.write("" + ((_ref6 = err.message) != null ? _ref6 : err) + "\n") : (ext = format.toLowerCase().slice(0, 3), ext === 'jpe' ? ext = 'jpg' : void 0));
                                         });
                                       } else {
                                         return __iced_k();
@@ -382,7 +388,7 @@
                                                   return err = arguments[0];
                                                 };
                                               })(),
-                                              lineno: 207
+                                              lineno: 213
                                             }));
                                             __iced_deferrals._fulfill();
                                           })(function() {
@@ -400,7 +406,7 @@
                                                         return newExists = arguments[0];
                                                       };
                                                     })(),
-                                                    lineno: 209
+                                                    lineno: 215
                                                   }));
                                                   __iced_deferrals._fulfill();
                                                 })(function() {
@@ -418,12 +424,12 @@
                                                               return err = arguments[0];
                                                             };
                                                           })(),
-                                                          lineno: 211
+                                                          lineno: 217
                                                         }));
                                                         __iced_deferrals._fulfill();
                                                       })(function() {
-                                                        var _ref5;
-                                                        return __iced_k(err ? process.stderr.write("" + ((_ref5 = err.message) != null ? _ref5 : err) + "\n") : void 0);
+                                                        var _ref6;
+                                                        return __iced_k(err ? process.stderr.write("" + ((_ref6 = err.message) != null ? _ref6 : err) + "\n") : void 0);
                                                       });
                                                     } else {
                                                       return __iced_k();
@@ -441,12 +447,12 @@
                                                             return err = arguments[0];
                                                           };
                                                         })(),
-                                                        lineno: 213
+                                                        lineno: 219
                                                       }));
                                                       __iced_deferrals._fulfill();
                                                     })(function() {
-                                                      var _ref5;
-                                                      return __iced_k(err ? process.stderr.write("" + ((_ref5 = err.message) != null ? _ref5 : err) + "\n") : void 0);
+                                                      var _ref6;
+                                                      return __iced_k(err ? process.stderr.write("" + ((_ref6 = err.message) != null ? _ref6 : err) + "\n") : void 0);
                                                     });
                                                   });
                                                 });
@@ -471,12 +477,12 @@
                           } else {
                             filesPath = docpad.config.srcPath + '/files';
                             (function(__iced_k) {
-                              var _keys, _l, _m, _ref4, _results1, _while;
-                              _ref4 = component.images;
+                              var _keys, _l, _m, _ref5, _results1, _while;
+                              _ref5 = component.images;
                               _keys = (function() {
                                 var _results2;
                                 _results2 = [];
-                                for (_l in _ref4) {
+                                for (_l in _ref5) {
                                   _results2.push(_l);
                                 }
                                 return _results2;
@@ -502,11 +508,11 @@
                                   return _break();
                                 } else {
                                   key = _keys[_m];
-                                  val = _ref4[key];
+                                  val = _ref5[key];
                                   (function(__iced_k) {
-                                    var _len3, _n, _ref5, _results2, _while;
-                                    _ref5 = ['jpg', 'gif', 'png'];
-                                    _len3 = _ref5.length;
+                                    var _len3, _n, _ref6, _results2, _while;
+                                    _ref6 = ['jpg', 'gif', 'png'];
+                                    _len3 = _ref6.length;
                                     _n = 0;
                                     _results2 = [];
                                     _while = function(__iced_k) {
@@ -527,7 +533,7 @@
                                       if (!(_n < _len3)) {
                                         return _break();
                                       } else {
-                                        ext = _ref5[_n];
+                                        ext = _ref6[_n];
                                         imgContext = {};
                                         for (k in finalContext) {
                                           v = finalContext[k];
@@ -547,7 +553,7 @@
                                                 return imgExists = arguments[0];
                                               };
                                             })(),
-                                            lineno: 226
+                                            lineno: 232
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -565,12 +571,12 @@
                                                       return err = arguments[0];
                                                     };
                                                   })(),
-                                                  lineno: 228
+                                                  lineno: 234
                                                 }));
                                                 __iced_deferrals._fulfill();
                                               })(function() {
-                                                var _ref6;
-                                                return __iced_k(err ? process.stderr.write("" + ((_ref6 = err.message) != null ? _ref6 : err) + "\n") : void 0);
+                                                var _ref7;
+                                                return __iced_k(err ? process.stderr.write("" + ((_ref7 = err.message) != null ? _ref7 : err) + "\n") : void 0);
                                               });
                                             } else {
                                               return __iced_k();
@@ -595,20 +601,18 @@
                 };
                 _while(__iced_k);
               })(function() {
-                var _k, _len2, _ref3;
+                var _k, _len2, _ref4;
                 meta = applyContext(model.form.meta, finalContext);
                 meta[config.prefix.meta] = finalData;
                 saveTime = new Date().getTime();
                 meta[config.prefix.meta].updated_at = saveTime;
-                if (!(meta[config.prefix.meta].id != null)) {
-                  meta[config.prefix.meta].id = (uuid.v1() + '' + uuid.v4()).split('-').join('').substring(0, 48);
-                }
+                meta[config.prefix.meta].id = uniqId;
                 content = applyContext(model.form.content, finalContext);
                 yamlString = YAML.stringify(meta, 8, 4).trim();
                 char = null;
-                _ref3 = ['-', '`', '#', '_', '*', '=', '+', ',', ':', '@', '&', ';', '?', '°'];
-                for (_k = 0, _len2 = _ref3.length; _k < _len2; _k++) {
-                  c = _ref3[_k];
+                _ref4 = ['-', '`', '#', '_', '*', '=', '+', ',', ':', '@', '&', ';', '?', '°'];
+                for (_k = 0, _len2 = _ref4.length; _k < _len2; _k++) {
+                  c = _ref4[_k];
                   if (yamlString.split('' + c + '' + c + '' + c).length < 2) {
                     char = c;
                     break;
@@ -630,7 +634,7 @@
                             return err = arguments[0];
                           };
                         })(),
-                        lineno: 258
+                        lineno: 261
                       }));
                       __iced_deferrals._fulfill();
                     })(__iced_k);
@@ -650,7 +654,7 @@
                           return itemExists = arguments[0];
                         };
                       })(),
-                      lineno: 259
+                      lineno: 262
                     }));
                     __iced_deferrals._fulfill();
                   })(function() {
@@ -668,7 +672,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 261
+                            lineno: 264
                           }));
                           __iced_deferrals._fulfill();
                         })(__iced_k);
@@ -688,7 +692,7 @@
                               return err = arguments[0];
                             };
                           })(),
-                          lineno: 262
+                          lineno: 265
                         }));
                         __iced_deferrals._fulfill();
                       })(function() {
@@ -704,17 +708,17 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 265
+                            lineno: 268
                           }));
                           __iced_deferrals._fulfill();
                         })(function() {
                           docpad.action('generate', {
                             reset: false
                           }, function(err) {
-                            var _ref4,
+                            var _ref5,
                               _this = this;
                             if (err) {
-                              (process.stderr.write((_ref4 = err.message) != null ? _ref4 : err) + '').trim() + "\n";
+                              (process.stderr.write((_ref5 = err.message) != null ? _ref5 : err) + '').trim() + "\n";
                             }
                             return setTimeout((function() {
                               var docItem, i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
@@ -745,15 +749,15 @@
                                     return _break();
                                   } else {
                                     (function(__iced_k) {
-                                      var _ref5;
-                                      if ((docItem != null ? typeof docItem.get === "function" ? (_ref5 = docItem.get(config.prefix.meta)) != null ? _ref5.updated_at : void 0 : void 0 : void 0) !== saveTime) {
+                                      var _ref6;
+                                      if ((docItem != null ? typeof docItem.get === "function" ? (_ref6 = docItem.get(config.prefix.meta)) != null ? _ref6.updated_at : void 0 : void 0 : void 0) !== saveTime) {
                                         (function(__iced_k) {
                                           __iced_deferrals = new iced.Deferrals(__iced_k, {
                                             parent: ___iced_passed_deferral1,
                                             filename: "src/routes/edit.coffee"
                                           });
                                           setTimeout(__iced_deferrals.defer({
-                                            lineno: 273
+                                            lineno: 276
                                           }), 1000);
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -771,14 +775,14 @@
                                 };
                                 _while(__iced_k);
                               })(function() {
-                                var _ref5;
-                                if ((docItem != null ? typeof docItem.get === "function" ? (_ref5 = docItem.get(config.prefix.meta)) != null ? _ref5.updated_at : void 0 : void 0 : void 0) !== saveTime) {
+                                var _ref6;
+                                if ((docItem != null ? typeof docItem.get === "function" ? (_ref6 = docItem.get(config.prefix.meta)) != null ? _ref6.updated_at : void 0 : void 0 : void 0) !== saveTime) {
                                   return docpad.action('generate', {
                                     reset: true
                                   }, function(err) {
-                                    var _ref6;
+                                    var _ref7;
                                     if (err) {
-                                      (process.stderr.write((_ref6 = err.message) != null ? _ref6 : err) + '').trim() + "\n";
+                                      (process.stderr.write((_ref7 = err.message) != null ? _ref7 : err) + '').trim() + "\n";
                                     }
                                     return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/edit?url=' + url);
                                   });
@@ -801,29 +805,29 @@
         });
       } else {
         (function(__iced_k) {
-          var _k, _len2, _ref3, _ref4;
+          var _k, _len2, _ref4, _ref5;
           if (remove) {
             filesToRemove = [];
             urlForFile = (item.url === '/' ? '/index' : item.url);
             filesToRemove.push(docpad.config.srcPath + '/documents' + urlForFile + '.' + model.form.ext);
-            _ref3 = model.form.components;
-            for (_k = 0, _len2 = _ref3.length; _k < _len2; _k++) {
-              component = _ref3[_k];
+            _ref4 = model.form.components;
+            for (_k = 0, _len2 = _ref4.length; _k < _len2; _k++) {
+              component = _ref4[_k];
               if (component.type === 'file' && (component.images != null)) {
                 fieldData = data[component.field];
                 filesPath = docpad.config.srcPath + '/files';
-                _ref4 = component.images;
-                for (key in _ref4) {
-                  val = _ref4[key];
+                _ref5 = component.images;
+                for (key in _ref5) {
+                  val = _ref5[key];
                   imgUrl = applyContext(component.images[key].url, context);
                   filesToRemove.push(filesPath + imgUrl);
                 }
               }
             }
             (function(__iced_k) {
-              var _l, _len3, _ref5, _results, _while;
-              _ref5 = filesToRemove;
-              _len3 = _ref5.length;
+              var _l, _len3, _ref6, _results, _while;
+              _ref6 = filesToRemove;
+              _len3 = _ref6.length;
               _l = 0;
               _results = [];
               _while = function(__iced_k) {
@@ -844,7 +848,7 @@
                 if (!(_l < _len3)) {
                   return _break();
                 } else {
-                  toRemove = _ref5[_l];
+                  toRemove = _ref6[_l];
                   (function(__iced_k) {
                     __iced_deferrals = new iced.Deferrals(__iced_k, {
                       parent: ___iced_passed_deferral,
@@ -857,7 +861,7 @@
                           return err = arguments[0];
                         };
                       })(),
-                      lineno: 312
+                      lineno: 315
                     }));
                     __iced_deferrals._fulfill();
                   })(_next);
@@ -868,10 +872,10 @@
               docpad.action('generate', {
                 reset: false
               }, function(err) {
-                var _ref5,
+                var _ref6,
                   _this = this;
                 if (err) {
-                  (process.stderr.write((_ref5 = err.message) != null ? _ref5 : err) + '').trim() + "\n";
+                  (process.stderr.write((_ref6 = err.message) != null ? _ref6 : err) + '').trim() + "\n";
                 }
                 return setTimeout((function() {
                   var i, ___iced_passed_deferral1, __iced_deferrals, __iced_k;
@@ -910,7 +914,7 @@
                                 filename: "src/routes/edit.coffee"
                               });
                               setTimeout(__iced_deferrals.defer({
-                                lineno: 319
+                                lineno: 322
                               }), 1000);
                               __iced_deferrals._fulfill();
                             })(__iced_k);
@@ -930,9 +934,9 @@
                       return docpad.action('generate', {
                         reset: true
                       }, function(err) {
-                        var _ref6;
+                        var _ref7;
                         if (err) {
-                          return (process.stderr.write((_ref6 = err.message) != null ? _ref6 : err) + '').trim() + "\n";
+                          return (process.stderr.write((_ref7 = err.message) != null ? _ref7 : err) + '').trim() + "\n";
                         }
                         return res.redirect('/' + config.prefix.url + '/' + slugify(model.name[0]) + '/list');
                       });

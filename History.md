@@ -1,5 +1,8 @@
 ## History
 
+- v2.1.7 May 18, 2013
+    - Fixed entry id being generated when it shouldn't
+
 - v2.1.7 May 16, 2013
     - Fixed meta separator again as the previous fix didn't work
 
