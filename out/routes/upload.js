@@ -243,7 +243,7 @@
                         return __iced_k(height = val.height);
                       });
                     } else {
-                      scale = Math.min(val.width / size.width, val.height / size.height);
+                      scale = Math.min(1, Math.min(val.width / size.width, val.height / size.height));
                       width = Math.round(size.width * scale);
                       height = Math.round(size.height * scale);
                       (function(__iced_k) {

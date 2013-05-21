@@ -118,7 +118,7 @@ module.exports = (req, res) ->
                         width = val.width
                         height = val.height
                     else
-                        scale = Math.min(val.width / size.width, val.height / size.height)
+                        scale = Math.min(1, Math.min(val.width / size.width, val.height / size.height))
                         width = Math.round(size.width * scale)
                         height = Math.round(size.height * scale)
                         await gm(file.path).resize(width, height).noProfile().write path, defer err
