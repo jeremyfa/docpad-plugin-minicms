@@ -157,23 +157,27 @@
       if (!(computed.value != null)) computed.value = null;
       computedData[computed.field] = computed.value;
       valid[computed.field] = false;
-      try {
-        valid[computed.field] = this.config.validate.apply(context, [component, computed.value]);
-      } catch (e) {
-        console.log("base validator of " + computed.field + " thrown exception.");
-        console.log(e);
-      }
-      if (valid[computed.field]) {
-        if (typeof component.validate === 'function') {
-          try {
-            valid[computed.field] = !!component.validate.apply(context, [computed.value]);
-          } catch (e) {
-            console.log("validator of " + computed.field + " thrown exception.");
-            console.log(e);
-            valid[computed.field] = false;
+      if (!(computed.value != null) && component.optional) {
+        valid[computed.field] = true;
+      } else {
+        try {
+          valid[computed.field] = this.config.validate.apply(context, [component, computed.value]);
+        } catch (e) {
+          console.log("base validator of " + computed.field + " thrown exception.");
+          console.log(e);
+        }
+        if (valid[computed.field]) {
+          if (typeof component.validate === 'function') {
+            try {
+              valid[computed.field] = !!component.validate.apply(context, [computed.value]);
+            } catch (e) {
+              console.log("validator of " + computed.field + " thrown exception.");
+              console.log(e);
+              valid[computed.field] = false;
+            }
+          } else {
+            valid[computed.field] = true;
           }
-        } else {
-          valid[computed.field] = true;
         }
       }
       computed.valid = valid[computed.field];
@@ -248,7 +252,7 @@
                 return exists = arguments[0];
               };
             })(),
-            lineno: 184
+            lineno: 187
           }));
           __iced_deferrals._fulfill();
         })(function() {
@@ -335,7 +339,7 @@
                                           return prevExists = arguments[0];
                                         };
                                       })(),
-                                      lineno: 197
+                                      lineno: 200
                                     }));
                                     __iced_deferrals._fulfill();
                                   })(function() {
@@ -355,7 +359,7 @@
                                                 return format = arguments[1];
                                               };
                                             })(),
-                                            lineno: 200
+                                            lineno: 203
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -388,7 +392,7 @@
                                                   return err = arguments[0];
                                                 };
                                               })(),
-                                              lineno: 213
+                                              lineno: 216
                                             }));
                                             __iced_deferrals._fulfill();
                                           })(function() {
@@ -406,7 +410,7 @@
                                                         return newExists = arguments[0];
                                                       };
                                                     })(),
-                                                    lineno: 215
+                                                    lineno: 218
                                                   }));
                                                   __iced_deferrals._fulfill();
                                                 })(function() {
@@ -424,7 +428,7 @@
                                                               return err = arguments[0];
                                                             };
                                                           })(),
-                                                          lineno: 217
+                                                          lineno: 220
                                                         }));
                                                         __iced_deferrals._fulfill();
                                                       })(function() {
@@ -447,7 +451,7 @@
                                                             return err = arguments[0];
                                                           };
                                                         })(),
-                                                        lineno: 219
+                                                        lineno: 222
                                                       }));
                                                       __iced_deferrals._fulfill();
                                                     })(function() {
@@ -553,7 +557,7 @@
                                                 return imgExists = arguments[0];
                                               };
                                             })(),
-                                            lineno: 232
+                                            lineno: 235
                                           }));
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -571,7 +575,7 @@
                                                       return err = arguments[0];
                                                     };
                                                   })(),
-                                                  lineno: 234
+                                                  lineno: 237
                                                 }));
                                                 __iced_deferrals._fulfill();
                                               })(function() {
@@ -634,7 +638,7 @@
                             return err = arguments[0];
                           };
                         })(),
-                        lineno: 261
+                        lineno: 264
                       }));
                       __iced_deferrals._fulfill();
                     })(__iced_k);
@@ -654,7 +658,7 @@
                           return itemExists = arguments[0];
                         };
                       })(),
-                      lineno: 262
+                      lineno: 265
                     }));
                     __iced_deferrals._fulfill();
                   })(function() {
@@ -672,7 +676,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 264
+                            lineno: 267
                           }));
                           __iced_deferrals._fulfill();
                         })(__iced_k);
@@ -692,7 +696,7 @@
                               return err = arguments[0];
                             };
                           })(),
-                          lineno: 265
+                          lineno: 268
                         }));
                         __iced_deferrals._fulfill();
                       })(function() {
@@ -708,7 +712,7 @@
                                 return err = arguments[0];
                               };
                             })(),
-                            lineno: 268
+                            lineno: 271
                           }));
                           __iced_deferrals._fulfill();
                         })(function() {
@@ -757,7 +761,7 @@
                                             filename: "src/routes/edit.coffee"
                                           });
                                           setTimeout(__iced_deferrals.defer({
-                                            lineno: 276
+                                            lineno: 279
                                           }), 1000);
                                           __iced_deferrals._fulfill();
                                         })(function() {
@@ -861,7 +865,7 @@
                           return err = arguments[0];
                         };
                       })(),
-                      lineno: 315
+                      lineno: 318
                     }));
                     __iced_deferrals._fulfill();
                   })(_next);
@@ -914,7 +918,7 @@
                                 filename: "src/routes/edit.coffee"
                               });
                               setTimeout(__iced_deferrals.defer({
-                                lineno: 322
+                                lineno: 325
                               }), 1000);
                               __iced_deferrals._fulfill();
                             })(__iced_k);

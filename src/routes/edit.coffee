@@ -105,23 +105,26 @@ module.exports = (req, res) ->
 
         # Run base validator
         valid[computed.field] = false
-        try
-            valid[computed.field] = @config.validate.apply(context, [component, computed.value])
-        catch e
-            console.log "base validator of #{computed.field} thrown exception."
-            console.log e
+        if not computed.value? and component.optional
+            valid[computed.field] = true
+        else
+            try
+                valid[computed.field] = @config.validate.apply(context, [component, computed.value])
+            catch e
+                console.log "base validator of #{computed.field} thrown exception."
+                console.log e
 
-        # Run custom validator
-        if valid[computed.field]
-            if typeof component.validate is 'function'
-                try
-                    valid[computed.field] = !!component.validate.apply(context, [computed.value])
-                catch e
-                    console.log "validator of #{computed.field} thrown exception."
-                    console.log e
-                    valid[computed.field] = false
-            else
-                valid[computed.field] = true
+            # Run custom validator
+            if valid[computed.field]
+                if typeof component.validate is 'function'
+                    try
+                        valid[computed.field] = !!component.validate.apply(context, [computed.value])
+                    catch e
+                        console.log "validator of #{computed.field} thrown exception."
+                        console.log e
+                        valid[computed.field] = false
+                else
+                    valid[computed.field] = true
 
         computed.valid = valid[computed.field]
         allValid = (allValid and computed.valid)

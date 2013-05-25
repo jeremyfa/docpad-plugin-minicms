@@ -31,15 +31,15 @@
       }
       return true;
     } else if (field.type === 'text') {
-      return typeof val === 'string' && val.trim().length > 0;
+      return typeof val === 'string' && (val.trim().length > 0 || field.optional);
     } else if (field.type === 'textarea') {
-      return typeof val === 'string' && val.trim().length > 0;
+      return typeof val === 'string' && (val.trim().length > 0 || field.optional);
     } else if (field.type === 'wysiwyg') {
-      return typeof val === 'string' && val.trim().length > 0;
+      return typeof val === 'string' && (val.trim().length > 0 || field.optional);
     } else if (field.type === 'markdown') {
-      return typeof val === 'string' && val.trim().length > 0;
+      return typeof val === 'string' && (val.trim().length > 0 || field.optional);
     } else if (field.type === 'choice') {
-      return typeof val === 'string' && val.trim().length > 0;
+      return typeof val === 'string' && (val.trim().length > 0 || field.optional);
     } else if (field.type === 'date') {
       return typeof val === 'number' && Math.floor(val) === val;
     } else if (field.type === 'color') {

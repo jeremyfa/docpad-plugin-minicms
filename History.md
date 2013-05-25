@@ -1,9 +1,10 @@
 ## History
 
-- v2.1.8 May 21, 2013
+- v2.1.9 May 25, 2013
     - Don't increase the size of image that are already smaller than the targeted size
+    - Fixed validator failing on optional textual components
 
-- v2.1.7 May 18, 2013
+- v2.1.8 May 18, 2013
     - Fixed entry id being generated when it shouldn't
 
 - v2.1.7 May 16, 2013

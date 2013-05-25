@@ -27,23 +27,23 @@ module.exports = (field, val) ->
 
     # Text
     else if field.type is 'text'
-        return typeof(val) is 'string' and val.trim().length > 0
+        return typeof(val) is 'string' and (val.trim().length > 0 or field.optional)
 
     # Textarea
     else if field.type is 'textarea'
-        return typeof(val) is 'string' and val.trim().length > 0
+        return typeof(val) is 'string' and (val.trim().length > 0 or field.optional)
 
     # Wysiwyg
     else if field.type is 'wysiwyg'
-        return typeof(val) is 'string' and val.trim().length > 0
+        return typeof(val) is 'string' and (val.trim().length > 0 or field.optional)
 
     # Markdown
     else if field.type is 'markdown'
-        return typeof(val) is 'string' and val.trim().length > 0
+        return typeof(val) is 'string' and (val.trim().length > 0 or field.optional)
 
     # Choice
     else if field.type is 'choice'
-        return typeof(val) is 'string' and val.trim().length > 0
+        return typeof(val) is 'string' and (val.trim().length > 0 or field.optional)
 
     # Date
     else if field.type is 'date'
