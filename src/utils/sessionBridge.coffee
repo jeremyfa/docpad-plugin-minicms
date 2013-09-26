@@ -8,7 +8,7 @@ class Session
     
     constructor: (@req) ->
 
-    @def 'authenticated'
+    @def 'authenticated',
         get: ->
             if @req.session.a
                 return true
@@ -20,7 +20,7 @@ class Session
             else
                 delete @req.session.a
 
-    @def 'authenticating'
+    @def 'authenticating',
         get: ->
             if @req.session.b
                 return true
@@ -32,7 +32,7 @@ class Session
             else
                 delete @req.session.b
 
-    @def 'lastAuthAttempt'
+    @def 'lastAuthAttempt',
         get: ->
             if @req.session.c
                 return true
