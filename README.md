@@ -17,7 +17,7 @@ _I know there has been [a lot of talk](https://github.com/bevry/docpad/issues/12
 
 ## How to use
 
-Run ```npm install docpad-plugin-minicms```
+Run ```docpad install minicms```
 
 Then, you should definitely take a look at the [docpad.coffee](https://github.com/jeremyfa/docpad-plugin-minicms/blob/master/examples/blog/docpad.coffee) file of the blog example project in order to know how to configure the plugin.
 
