@@ -10,6 +10,7 @@ deepCopy = require('owl-deepcopy').deepCopy
 YAML = require('yamljs')
 applyContext = require './utils/applyContext'
 sessionBridge = require './utils/sessionBridge'
+express = require 'express'
 
 # Export Plugin
 module.exports = (BasePlugin) ->
@@ -44,7 +45,8 @@ module.exports = (BasePlugin) ->
         serverExtend: (opts) ->
             # Extract useful values
             app = opts.server
-            express = opts.express
+            console.log "SERVER = "
+            console.log app
             docpad = @docpad
             config = @config
 
