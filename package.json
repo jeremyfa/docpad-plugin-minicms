@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-minicms",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "description": "Add admin features to docpad",
   "homepage": "http://jeremyfa.com",
   "keywords": [
@@ -28,8 +28,6 @@
   },
   "dependencies": {
     "yamljs": "~0.1.4",
-    "urlify": "~0.2.1",
-    "slug": "~0.2.2",
     "coffeecup": "~0.3.19",
     "express": "~3.4.4",
     "marked": "~0.2.8",

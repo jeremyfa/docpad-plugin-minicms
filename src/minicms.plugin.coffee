@@ -33,6 +33,7 @@ module.exports = (BasePlugin) ->
             # Default sanitizer for all fields
             sanitize: require './utils/sanitize'
 
+
         # When dopac is ready, force it to watch files
         docpadReady: (opts) ->
             @docpad.action 'watch', {}, (err) ->
@@ -45,8 +46,6 @@ module.exports = (BasePlugin) ->
         serverExtend: (opts) ->
             # Extract useful values
             app = opts.server
-            console.log "SERVER = "
-            console.log app
             docpad = @docpad
             config = @config
 
