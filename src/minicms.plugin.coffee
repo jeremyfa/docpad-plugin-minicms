@@ -33,6 +33,7 @@ module.exports = (BasePlugin) ->
             # Default sanitizer for all fields
             sanitize: require './utils/sanitize'
 
+            models: []
 
         # When dopac is ready, force it to watch files
         docpadReady: (opts) ->
@@ -59,35 +60,36 @@ module.exports = (BasePlugin) ->
                 throw "Secret is required for cookie sessions (minicms)"
 
             # Use session handler
-            app.use express.cookieParser()
-            app.use express.cookieSession secret: @config.secret
+            # note: doe to the way middleware and routs get added in current versions of docpad, things added via ap.use get lost
+            cp = express.cookieParser()
+            cs = express.cookieSession secret: @config.secret
 
             # Authenticate (logout)
-            app.get '/'+@config.prefix.url+'/logout', require('./routes/logout').bind(@)
+            app.get '/'+@config.prefix.url+'/logout', cp, cs, require('./routes/logout').bind(@)
 
             # Authenticate (page)
-            app.get '/'+@config.prefix.url+'/login', require('./routes/login').bind(@)
+            app.get '/'+@config.prefix.url+'/login', cp, cs, require('./routes/login').bind(@)
 
             # Authenticate (submit)
-            app.post '/'+@config.prefix.url+'/login', require('./routes/loginSubmit').bind(@)
+            app.post '/'+@config.prefix.url+'/login', cp, cs, require('./routes/loginSubmit').bind(@)
 
             # Serve admin root
-            app.get '/'+@config.prefix.url, require('./routes/root').bind(@)
+            app.get '/'+@config.prefix.url, cp, cs, require('./routes/root').bind(@)
 
             # Serve admin content list
-            app.get '/'+@config.prefix.url+'/:content/list', require('./routes/list').bind(@)
+            app.get '/'+@config.prefix.url+'/:content/list', cp, cs, require('./routes/list').bind(@)
 
             # Server admin content edit
-            app.get '/'+@config.prefix.url+'/:content/edit', require('./routes/edit').bind(@)
+            app.get '/'+@config.prefix.url+'/:content/edit', cp, cs, require('./routes/edit').bind(@)
 
             # Server admin content edit (submit)
-            app.post '/'+@config.prefix.url+'/:content/edit', require('./routes/edit').bind(@)
+            app.post '/'+@config.prefix.url+'/:content/edit', cp, cs, require('./routes/edit').bind(@)
 
             # Force generate
-            app.post '/'+@config.prefix.url+'/generate', require('./routes/generate').bind(@)
+            app.post '/'+@config.prefix.url+'/generate', cp, cs, require('./routes/generate').bind(@)
 
             # Handle file upload
-            app.post '/'+@config.prefix.url+'/:content/:field/upload', require('./routes/upload').bind(@)
+            app.post '/'+@config.prefix.url+'/:content/:field/upload', cp, cs, require('./routes/upload').bind(@)
 
             
 
