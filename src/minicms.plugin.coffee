@@ -35,13 +35,6 @@ module.exports = (BasePlugin) ->
 
             models: []
 
-        # When dopac is ready, force it to watch files
-        docpadReady: (opts) ->
-            @docpad.action 'watch', {}, (err) ->
-                if err then process.stderr.write ("#{err.message ? err}").trim()+"\n"
-                @docpad.log "Force watching file for minicms."
-
-
         # Server Extend
         # Used to add our own custom routes to the server before the docpad routes are added
         serverExtend: (opts) ->
