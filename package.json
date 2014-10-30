@@ -38,5 +38,8 @@
   "devDependencies": {
     "coffee-script": "1.4.x"
   },
-  "main": "./out/minicms.plugin.js"
+  "main": "./out/minicms.plugin.js",
+  "scripts": {
+    "prepublish": "cake build"
+  }
 }
