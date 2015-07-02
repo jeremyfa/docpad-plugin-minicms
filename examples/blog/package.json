@@ -10,12 +10,12 @@
   "author": "Jeremy Faivre <contact@jeremyfa.com>",
   "license": "MIT",
   "dependencies": {
-    "docpad-plugin-marked": "~2.1.1",
-    "docpad-plugin-stylus": "~2.3.0",
-    "docpad-plugin-coffeekup": "~2.1.5",
-    "docpad-plugin-cleanurls": "~2.4.3",
-    "docpad-plugin-coffeescript": "~2.2.1",
-    "docpad": "~6.32.0",
-    "docpad-plugin-minicms": "~2.1.1"
+    "docpad": "~6.78.1",
+    "docpad-plugin-cleanurls": "~2.7.0",
+    "docpad-plugin-coffeekup": "~2.2.0",
+    "docpad-plugin-coffeescript": "~2.5.0",
+    "docpad-plugin-marked": "~2.3.0",
+    "docpad-plugin-minicms": "~2.2.0",
+    "docpad-plugin-stylus": "~2.9.0"
   }
 }
