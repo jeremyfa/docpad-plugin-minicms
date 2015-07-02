@@ -82,7 +82,7 @@ module.exports = (BasePlugin) ->
             app.post '/'+@config.prefix.url+'/generate', cp, cs, require('./routes/generate').bind(@)
 
             # Handle file upload
-            app.post '/'+@config.prefix.url+'/:content/:field/upload', cp, cs, require('./routes/upload').bind(@)
+            app.post '/'+@config.prefix.url+'/:content/:field/upload', cp, cs, express.bodyParser(keepExtensions: true), require('./routes/upload').bind(@)
 
             
 
