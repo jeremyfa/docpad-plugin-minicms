@@ -15,7 +15,7 @@
     "docpad-plugin-coffeekup": "~2.2.0",
     "docpad-plugin-coffeescript": "~2.5.0",
     "docpad-plugin-marked": "~2.3.0",
-    "docpad-plugin-minicms": "~2.2.0",
+    "docpad-plugin-minicms": "~2.2.1",
     "docpad-plugin-stylus": "~2.9.0"
   }
 }
