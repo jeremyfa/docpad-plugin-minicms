@@ -1,6 +1,10 @@
 miniCMS
 =======
 
+## ⚠️ Warning ⚠️ ##
+
+This plugin is not maintained anymore. Pull Requests that fix/improve this repo will be accepted however!
+
 ## Add admin features to Docpad
 
 ![screen1](https://github.com/jeremyfa/docpad-plugin-minicms/raw/master/screens/screen1.png)
