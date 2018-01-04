@@ -30,7 +30,7 @@
     "yamljs": "~0.1.4",
     "coffeecup": "~0.3.19",
     "express": "~3.4.4",
-    "marked": "~0.2.8",
+    "marked": "~0.3.7",
     "node-uuid": "~1.4.0",
     "gm": "~1.8.2",
     "owl-deepcopy": "0.0.2"
